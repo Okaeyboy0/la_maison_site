@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}La Maison Intégrée{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- AOS (Scroll Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- FAVICON (Optional) -->
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
+</head>
+
+<body>
+
+<!-- ========================= NAVBAR ========================= -->
+<nav class="navbar" data-aos="fade-down">
+    <div class="nav-center">
+        <a href="/" class="nav-logo">LA MAISON INTÉGRÉE</a>
+    </div>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+
+    <ul class="nav-menu">
+        <li><a href="/" data-aos="fade-down" data-aos-delay="100">Home</a></li>
+        <li><a href="/trackify" data-aos="fade-down" data-aos-delay="150">Trackify</a></li>
+        <li><a href="/services" data-aos="fade-down" data-aos-delay="200">Services</a></li>
+        <li><a href="/pricing" data-aos="fade-down" data-aos-delay="250">Pricing</a></li>
+        <li><a href="/about" data-aos="fade-down" data-aos-delay="300">About</a></li>
+        <li><a href="/contact" data-aos="fade-down" data-aos-delay="350">Contact</a></li>
+        <li><a href="/newsletter" data-aos="fade-down" data-aos-delay="400">Newsletter</a></li>
+        <li><a href="/currency" data-aos="fade-down" data-aos-delay="450">Currency Rates</a></li>
+    </ul>
+</nav>
+
+<!-- ========================= CURRENCY BAR ========================= -->
+<div class="currency-bar" data-aos="fade-down" data-aos-delay="200">
+    <span>USD → NGN: <strong>{{ rates.USD_NGN }}</strong></span>
+    <span>USD → GBP: <strong>{{ rates.USD_GBP }}</strong></span>
+    <span>USD → CFA: <strong>{{ rates.USD_CFA }}</strong></span>
+</div>
+
+<!-- ========================= PAGE CONTENT ========================= -->
+<main class="page-wrapper">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="footer" data-aos="fade-up">
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <h3>LA MAISON INTÉGRÉE</h3>
+            <p>
+                A structured home for SMEs across Africa — delivering clarity,
+                financial discipline, and bilingual (EN/FR) support.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Company</h4>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/pricing">Pricing</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Products</h4>
+            <a href="/trackify">Trackify</a>
+            <a href="/currency">Currency Rates</a>
+            <a href="/newsletter">Newsletter</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Contact</h4>
+            <a href="/contact">Contact Form</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © {{ datetime.utcnow().year }} La Maison Intégrée — All Rights Reserved.
+    </div>
+</footer>
+
+<!-- ========================= WHATSAPP FLOAT ========================= -->
+<a href="https://wa.me/447538754677?text=Hello%20La%20Maison%20Int%C3%A9gr%C3%A9e"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="WhatsApp Chat">
+    <img src="{{ url_for('static', filename='images/whatsapp.svg') }}" alt="WhatsApp">
+</a>
+
+<!-- ========================= DARK MODE TOGGLE ========================= -->
+<button id="darkToggle" class="dark-toggle-btn" aria-label="Toggle Dark Mode">🌓</button>
+
+<!-- ========================= AOS Animations ========================= -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 900,
+        easing: 'ease-out',
+        once: true
+    });
+</script>
+
+<!-- ========================= DARK MODE SCRIPT ========================= -->
+<script>
+    const body = document.body;
+    const darkModeToggle = document.getElementById("darkToggle");
+
+    // Load saved preference
+    if (localStorage.getItem("darkMode") === "true") {
+        body.classList.add("dark-mode");
+    }
+
+    darkModeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+    });
+</script>
+
+<!-- ========================= MOBILE NAV ========================= -->
+<script>
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('.nav-menu');
+
+    toggle.addEventListener('change', () => {
+        menu.style.display = toggle.checked ? "flex" : "none";
+    });
+</script>
+
+</body>
+</html>

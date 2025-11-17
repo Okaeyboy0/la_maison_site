@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- ======================= HERO ======================= -->
+<section class="page-hero" data-aos="fade-down">
+    <div class="page-hero-inner">
+        <h1 class="page-hero-title">Currency Trends</h1>
+        <p class="page-hero-sub">
+            Real-time USD exchange movement for NGN, GBP, and CFA.
+        </p>
+    </div>
+</section>
+
+<!-- ======================= CHART SECTION ======================= -->
+<section class="section" data-aos="fade-up">
+
+    <div class="section-header">
+        <h2 class="section-title">Live Exchange Chart</h2>
+        <p class="section-subtitle">
+            Updated automatically using trusted forex sources.
+        </p>
+        <p style="margin-top:10px; font-size:13px; color:var(--text-muted);" id="updatedTime">
+            Loading latest rates...
+        </p>
+    </div>
+
+    <div class="currency-graph-container"
+         style="background:white; padding:30px; border-radius:18px;
+                box-shadow:0 20px 40px rgba(0,0,0,0.06); border:1px solid var(--border-soft);"
+         data-aos="zoom-in">
+
+        <canvas id="currencyChart" style="max-height:380px;"></canvas>
+    </div>
+
+</section>
+
+<!-- ======================= CHART.JS ======================= -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('currencyChart');
+
+/* ============================================================
+   FETCH LIVE RATES FROM OPEN ER API (No Key Required)
+============================================================ */
+async function fetchRates() {
+    try {
+        const res = await fetch("https://open.er-api.com/v6/latest/USD");
+
+        if (!res.ok) throw new Error("Network Error");
+
+        const data = await res.json();
+
+        if (data.result !== "success") throw new Error("API Error");
+
+        return {
+            ngn: data.rates.NGN,
+            gbp: data.rates.GBP,
+            cfa: data.rates.XOF,
+            time: data.time_last_update_utc
+        };
+
+    } catch (err) {
+        console.error(err);
+        return {
+            ngn: null,
+            gbp: null,
+            cfa: null,
+            time: "Unavailable"
+        };
+    }
+}
+
+/* ============================================================
+   CHART LOADER
+============================================================ */
+async function loadChart() {
+    let r = await fetchRates();
+
+    document.getElementById("updatedTime").innerText =
+        "Last Updated: " + r.time;
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["USD → NGN", "USD → GBP", "USD → CFA"],
+            datasets: [{
+                label: "Exchange Rate",
+                data: [r.ngn, r.gbp, r.cfa],
+                borderWidth: 3,
+                borderColor: "#a78b61",
+                backgroundColor: "rgba(167,139,97,0.12)",
+                pointBackgroundColor: "#a78b61",
+                pointRadius: 6,
+                pointHoverRadius: 9,
+                tension: 0.45,
+                fill: true,
+                borderJoinStyle: "round",
+                shadowColor: "rgba(0,0,0,0.15)",
+                shadowBlur: 12,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: "#2A2723",
+                    titleColor: "#fff",
+                    bodyColor: "#fff",
+                    padding: 12,
+                    borderColor: "#a78b61",
+                    borderWidth: 1,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: {
+                        color: "rgba(0,0,0,0.06)"
+                    }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+loadChart();
+</script>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- ===========================
+        HERO SECTION
+=========================== -->
+<section class="page-hero" data-aos="fade-down">
+    <div class="page-hero-inner">
+        <h1 class="page-hero-title">Join Our Newsletter</h1>
+        <p class="page-hero-sub">
+            Receive weekly SME insights, financial discipline frameworks,
+            operational clarity, and Trackify updates — directly to your inbox.
+        </p>
+    </div>
+</section>
+
+
+<!-- ===========================
+        NEWSLETTER FORM
+=========================== -->
+<section class="section">
+    <div class="newsletter-wrapper" data-aos="fade-up" data-aos-delay="150">
+
+        {% if msg == "success" %}
+        <div class="newsletter-success" data-aos="zoom-in">
+            ✔ You’ve been subscribed successfully!
+        </div>
+        {% elif msg == "exists" %}
+        <div class="newsletter-warning" data-aos="zoom-in">
+            ⚠ This email is already subscribed.
+        </div>
+        {% endif %}
+
+        <form action="/newsletter" method="POST" class="newsletter-form" data-aos="fade-up">
+
+            <input type="email"
+                   name="email"
+                   required
+                   placeholder="Enter your email address"
+                   class="newsletter-input">
+
+            <button type="submit" class="btn btn-primary newsletter-btn">
+                Subscribe
+            </button>
+        </form>
+
+        <p style="font-size:13px; margin-top:12px; opacity:0.8;" data-aos="fade-up" data-aos-delay="200">
+            We respect your privacy. No spam — only value.
+        </p>
+
+    </div>
+</section>
+
+{% endblock %}

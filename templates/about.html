@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- ====================== HERO ====================== -->
+<section class="page-hero about-hero" data-aos="fade-down">
+    <div class="page-hero-inner">
+        <h1 class="page-hero-title">About La Maison Intégrée</h1>
+        <p class="page-hero-sub">
+            A structured home for SMEs — built on clarity, transparency, and growth.
+        </p>
+    </div>
+</section>
+
+<!-- ====================== OUR STORY ====================== -->
+<section class="section" data-aos="fade-up">
+    <div class="section-header">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">
+            La Maison Intégrée began with one mission: to give SMEs the structure they need to grow.
+        </p>
+    </div>
+
+    <div class="story-block">
+        <p>
+            Many small and medium enterprises work tirelessly, yet their numbers fail to reflect that effort.
+            Receipts get lost, stock gets manipulated, and expenses vanish without trace — leaving owners unable
+            to trust their financial records.
+        </p>
+
+        <p>
+            We built La Maison Intégrée as a solution: a refined “House of Clarity”
+            where SMEs regain control through structure, visibility, and strong internal systems.
+        </p>
+
+        <p>
+            Today, we support businesses across multiple sectors — offering bilingual communication (EN/FR),
+            internal control frameworks, professional organization, and digital tools like Trackify,
+            designed specifically for African and ECOWAS markets.
+        </p>
+    </div>
+</section>
+
+<!-- ====================== OUR MISSION ====================== -->
+<section class="section section-alt" data-aos="zoom-in-up">
+    <div class="section-header">
+        <h2 class="section-title">Our Mission</h2>
+    </div>
+
+    <div class="mission-block">
+        <div class="mission-item" data-aos="fade-up" data-aos-delay="50">Clarity</div>
+        <div class="mission-item" data-aos="fade-up" data-aos-delay="100">Transparency</div>
+        <div class="mission-item" data-aos="fade-up" data-aos-delay="150">Structure</div>
+        <div class="mission-item" data-aos="fade-up" data-aos-delay="200">Growth</div>
+    </div>
+</section>
+
+<!-- ====================== FOUNDER ====================== -->
+<section class="section" data-aos="fade-up">
+    <div class="section-header">
+        <h2 class="section-title">Founder</h2>
+        <p class="section-subtitle">The mind behind the system.</p>
+    </div>
+
+    <div class="founder-card" data-aos="fade-up">
+        <img src="{{ url_for('static', filename='images/founder.jpg') }}"
+             class="founder-img" alt="Founder">
+
+        <div class="founder-info">
+            <h3 class="founder-name">Ozor Okechukwu Michael</h3>
+            <p class="founder-role">Founder & Systems Architect</p>
+
+            <p>
+                A bilingual (English & French) business systems designer dedicated to helping SMEs regain control,
+                prevent financial leakage, and build the internal structure required for long-term growth.
+            </p>
+
+            <p>
+                His vision is simple: transform African SMEs into organized, financially disciplined,
+                and globally competitive enterprises — one system at a time.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

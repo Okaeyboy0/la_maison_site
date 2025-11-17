@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Pricing — La Maison Intégrée{% endblock %}
+
+{% block content %}
+
+<!-- ===========================
+      HERO
+=========================== -->
+<div class="page-hero" data-aos="fade-down">
+    <h1 class="page-hero-title">Our Pricing</h1>
+    <p class="page-hero-sub">
+        Simple, transparent pricing designed to help SMEs grow with structure and clarity.
+    </p>
+</div>
+
+<!-- ===========================
+      PRICING GRID
+=========================== -->
+<div class="section">
+    <div class="pricing-grid">
+
+        <!-- STARTER PLAN -->
+        <div class="pricing-card" data-aos="zoom-in" data-aos-delay="100">
+            <h3 class="pricing-title">Starter</h3>
+
+            <p class="pricing-price">₦4,999 <span>/ month</span></p>
+
+            <ul class="pricing-list">
+                <li>✓ Basic SME Expense Tracking</li>
+                <li>✓ Limited Data Storage</li>
+                <li>✓ Email Support</li>
+                <li>✓ Monthly Reports</li>
+            </ul>
+
+            <button class="btn btn-primary pricing-btn">Get Started</button>
+        </div>
+
+        <!-- STANDARD PLAN (POPULAR) -->
+        <div class="pricing-card pricing-featured" data-aos="zoom-in" data-aos-delay="200">
+            <div class="popular-badge">Most Popular</div>
+
+            <h3 class="pricing-title">Standard</h3>
+
+            <p class="pricing-price">₦9,999 <span>/ month</span></p>
+
+            <ul class="pricing-list">
+                <li>✓ Full Access to Trackify</li>
+                <li>✓ Inventory & Expense Automation</li>
+                <li>✓ WhatsApp + Email Support</li>
+                <li>✓ Weekly Financial Summary</li>
+            </ul>
+
+            <button class="btn btn-primary pricing-btn highlighted">
+                Choose Plan
+            </button>
+        </div>
+
+        <!-- PREMIUM PLAN -->
+        <div class="pricing-card" data-aos="zoom-in" data-aos-delay="300">
+            <h3 class="pricing-title">Premium</h3>
+
+            <p class="pricing-price">₦24,999 <span>/ month</span></p>
+
+            <ul class="pricing-list">
+                <li>✓ Everything in Standard</li>
+                <li>✓ 1-on-1 SME Consultation</li>
+                <li>✓ Full Fraud-Proof System Setup</li>
+                <li>✓ Staff Training (EN/FR)</li>
+                <li>✓ Complete Business Structure Package</li>
+            </ul>
+
+            <button class="btn btn-primary pricing-btn">Upgrade</button>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
